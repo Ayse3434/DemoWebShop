@@ -57,5 +57,11 @@ public class DemoShopPage extends BasePage{
 
     @FindBy(xpath = "//p[text()='The product has been added to your ']")
     public WebElement addProductTextMessage;
-
+    public void login(String firstname,String lastname, String email, String password, String confirmpassword ){
+        firstNameInbox.sendKeys(firstname);
+        lastNameInbox.sendKeys(lastname);
+        emailInbox.sendKeys(email);
+        passwordInbox.sendKeys(password);
+        confirmPasswordInbox.sendKeys(confirmpassword);
+    }
 }

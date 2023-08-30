@@ -4,11 +4,15 @@ package com.demowebshop.stepDefinitions;
 import com.demowebshop.pages.DemoShopPage;
 import com.demowebshop.utilities.BrowserUtils;
 import com.demowebshop.utilities.Driver;
+import com.demowebshop.utilities.ExcelUtil;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+
+import java.util.List;
+import java.util.Map;
 
 public class Demowebshop_StepDefs {
 
@@ -88,6 +92,14 @@ public class Demowebshop_StepDefs {
         BrowserUtils.waitFor(1);
         Assert.assertEquals(addProductMessage, demoShopPage.addProductTextMessage.getText());
         BrowserUtils.waitFor(1);
+    }
+    @When("The user enters {string} and row number {int}")
+    public void the_user_enters_and_row_number(String sheetname, Integer rowNumber) {
+        ExcelUtil excelUtil=new ExcelUtil("src/test/resources/DemoWebShopData (1).xlsx",sheetname);
+        List<Map<String, String>> dataList = excelUtil.getDataList();
+        demoShopPage.genderCheckBtn.click();
+        demoShopPage.login(dataList.get(rowNumber).get("Firstname"),dataList.get(rowNumber).get("Lastname"),dataList.get(rowNumber).get("Email"),dataList.get(rowNumber).get("Password"),dataList.get(rowNumber).get("ConfirmPassword"));
+
     }
 
 }

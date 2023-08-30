@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
 },
         features = "src/test/resources/features",
         glue = "com/demowebshop/stepDefinitions",
-        dryRun = false,
-        tags = "@shop1"
+        dryRun = true,
+        tags = "@DDF"
 )
 
 
